@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Vector;
 
 
@@ -158,5 +159,21 @@ public class Vector3D {
         double crossZ = this.x * other.y - this.y * other.x;
 
         return new Vector3D(crossX, crossY, crossZ);
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj)  return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Vector3D vector = (Vector3D) obj;
+        return Double.compare(vector.x, x) == 0 &&
+                Double.compare(vector.y, y) == 0 &&
+                Double.compare(vector.z, z) == 0;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(x, y, z);
     }
 }
