@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 
+import java.util.Vector;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class Vector3DTest {
@@ -53,18 +55,35 @@ class Vector3DTest {
 
     @org.junit.jupiter.api.Test
     void multiply() {
-
+        double demoConstant = 2.00;
+        Vector3D resultVector = vector.multiply(demoConstant);
+        Vector3D other = new Vector3D(2.00, 4.00, 6.00);
+        assertEquals(resultVector, other, "Vectors must have the same x, y, z values");
     }
 
     @org.junit.jupiter.api.Test
     void dotProduct() {
+        Vector3D other = new Vector3D(2.00, 3.00, 4.00);
+        double expectedResult = 2.00 + 6.00 + 12.00;
+        assertEquals(expectedResult, vector.dotProduct(other), "Dot product must equals exactly as the expected result.");
     }
 
     @org.junit.jupiter.api.Test
     void angleBetween() {
+        Vector3D otherVector = new Vector3D(4.0, 5.0, 6.0);
+        double angle = vector.angleBetween(otherVector);
+        double expectedAngle = 12.933154491899135;
+        assertEquals(expectedAngle, angle, 0.001, "Angle between vectors must be calculated correctly.");
     }
 
     @org.junit.jupiter.api.Test
     void crossProduct() {
+        Vector3D other = new Vector3D(2.0, 3.0, 4.0);
+        double actualX = vector.getY() * other.getZ() - vector.getZ() * other.getY();
+        double actualY = vector.getZ() * other.getX() - vector.getX() * other.getZ();
+        double actualZ = vector.getX() * other.getY() - vector.getY() * other.getX();
+
+        Vector3D acutalVector3D = new Vector3D(actualX, actualY, actualZ);
+        assertEquals(acutalVector3D, new Vector3D(-1.00, 2.00, -1.00));
     }
 }

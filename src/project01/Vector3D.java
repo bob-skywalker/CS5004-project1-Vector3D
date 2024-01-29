@@ -134,6 +134,7 @@ public class Vector3D {
         double otherMagnitude = getMagnitude(other.x, other.y, other.z);
 
 
+
         if (thisMagnitude == 0 || otherMagnitude == 0) {
             throw new IllegalStateException("Magnitude Value cannot be zero.");
         }
