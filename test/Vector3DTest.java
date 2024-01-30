@@ -5,11 +5,13 @@ import java.util.Vector;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Vector3DTest {
-    private Vector3D vector;
+    private Vector3D vector, vectorB, vectorC;
 
     @BeforeEach
     void setup(){
         vector = new Vector3D(1.00, 2.00, 3.00);
+        vectorB = new Vector3D(-1.374, 2.394, 0);
+        vectorC = new Vector3D(1.876, -2.582, -3.384);
     }
 
     @org.junit.jupiter.api.Test
@@ -79,10 +81,11 @@ class Vector3DTest {
     @org.junit.jupiter.api.Test
     void crossProduct() {
         Vector3D other = new Vector3D(2.0, 3.0, 4.0);
+        Vector3D otherBC = new Vector3D(-8.101, -4.65, -0.943);
         double actualX = vector.getY() * other.getZ() - vector.getZ() * other.getY();
         double actualY = vector.getZ() * other.getX() - vector.getX() * other.getZ();
         double actualZ = vector.getX() * other.getY() - vector.getY() * other.getX();
-
+        assertTrue(otherBC.equals(vectorB.crossProduct(vectorC)));
         Vector3D acutalVector3D = new Vector3D(actualX, actualY, actualZ);
         assertEquals(acutalVector3D, new Vector3D(-1.00, 2.00, -1.00));
     }

@@ -168,9 +168,11 @@ public class Vector3D {
         if (obj == null || getClass() != obj.getClass()) return false;
 
         Vector3D vector = (Vector3D) obj;
-        return Double.compare(vector.x, x) == 0 &&
-                Double.compare(vector.y, y) == 0 &&
-                Double.compare(vector.z, z) == 0;
+        double epislon = 0.001;
+        return     Math.abs(vector.x - x) < epislon
+                && Math.abs(vector.y - y) < epislon
+                && Math.abs(vector.z - z) < epislon;
+
     }
 
     @Override
